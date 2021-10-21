@@ -1,0 +1,2 @@
+# geewa-terraform-azure-infrastructure
+geewa-terraform-azure-infrastructure IaC for Secure Azure Architecture having multiple resources which are Azure Virtual Machines, Azure SQL Virtual Machine, Azure Virtual Network, VNET Peering, Azure Bastion, Azure Public IP, Azure Network Interface, Azure Network Security Groups, Azure Managed Disk, Azure Application Gateway, Azure DDOS Protection, Azure Traffic Manager and Azure Resource Group.  
