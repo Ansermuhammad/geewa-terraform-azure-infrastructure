@@ -98,12 +98,14 @@ locals {
       imagepublisher_a = "MicrosoftWindowsServer"
       imageoffer_a = "WindowsServer"
       imagesku_a = "2019-Datacenter"
+      pip_geewa_appserver_a_name = "pip-game-app-dev-geewa-a"
       nic_geewa_appserver_a = "nic-game-app-dev-geewa-a"
       nic_private_ip_a = "10.10.1.11"
       
       #Application_Server_B
       nic_geewa_appserver_b = "nic-game-app-dev-geewa-b"
       nic_private_ip_b = "10.11.1.11"
+      pip_geewa_appserver_b_name = "pip-game-app-dev-geewa-b"
       vm_geewa_appserver_b = "vm-app-geewa-b"
       vmsize_geewa_appserver_b = "Standard_B2ms"
       vmosdiskname_geewa_appserver_b = "osdisk-app-dev-geewa-b"

@@ -60,6 +60,9 @@ module "virtualmachines" {
   nsg_geewa_appserver_a = local.workspace["nsg_geewa_appserver_a"]
   nsg_geewa_appserver_b = local.workspace["nsg_geewa_appserver_b"]
 
+  pip_geewa_appserver_a_name = local.workspace["pip_geewa_appserver_a_name"]
+  pip_geewa_appserver_b_name = local.workspace["pip_geewa_appserver_b_name"]
+
 
   tags = local.tags["default"]
 

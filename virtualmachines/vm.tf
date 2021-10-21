@@ -1,4 +1,13 @@
 
+resource "azurerm_public_ip" "pip_geewa_appserver_a_name" {
+  name                = var.pip_geewa_appserver_a_name
+  location            = var.location_a
+  resource_group_name = var.rg_geewa_name_a
+  allocation_method   = "Static"
+  sku                 = "Standard"
+  tags = var.tags
+}
+
 resource "azurerm_network_interface" "nic_geewa_appserver_a" {
   name                = var.nic_geewa_appserver_a
   location            = var.location_a
@@ -10,6 +19,7 @@ resource "azurerm_network_interface" "nic_geewa_appserver_a" {
     subnet_id                     = var.geewa_subnet_name_a_id
     private_ip_address_allocation = "Static"
     private_ip_address = var.nic_private_ip_a
+    public_ip_address_id = azurerm_public_ip.pip_geewa_appserver_a_name.id
   }
 }
 
@@ -18,6 +28,7 @@ resource "azurerm_virtual_machine" "vm_geewa_appserver_a" {
   resource_group_name = var.rg_geewa_name_a
   location            = var.location_a
   vm_size                = var.vmsize_geewa_appserver_a
+  tags = var.tags
   depends_on            = [azurerm_network_interface.nic_geewa_appserver_a]
   network_interface_ids = [
     azurerm_network_interface.nic_geewa_appserver_a.id,
@@ -47,6 +58,15 @@ resource "azurerm_virtual_machine" "vm_geewa_appserver_a" {
   }
 }
 
+resource "azurerm_public_ip" "pip_geewa_appserver_b_name" {
+  name                = var.pip_geewa_appserver_b_name
+  location            = var.location_b
+  resource_group_name = var.rg_geewa_name_b
+  allocation_method   = "Static"
+  sku                 = "Standard"
+  tags = var.tags
+}
+
 
 resource "azurerm_network_interface" "nic_geewa_appserver_b" {
   name                = var.nic_geewa_appserver_b
@@ -59,6 +79,7 @@ resource "azurerm_network_interface" "nic_geewa_appserver_b" {
     subnet_id                     = var.geewa_subnet_name_b_id
     private_ip_address_allocation = "Static"
     private_ip_address = var.nic_private_ip_b
+    public_ip_address_id = azurerm_public_ip.pip_geewa_appserver_b_name.id
   }
 }
 
@@ -68,6 +89,7 @@ resource "azurerm_virtual_machine" "vm_geewa_appserver_b" {
   resource_group_name = var.rg_geewa_name_b
   location            = var.location_b
   vm_size                = var.vmsize_geewa_appserver_b
+  tags = var.tags
   depends_on            = [azurerm_network_interface.nic_geewa_appserver_b]
   network_interface_ids = [
     azurerm_network_interface.nic_geewa_appserver_b.id,
@@ -118,6 +140,7 @@ resource "azurerm_virtual_machine" "vm_geewa_dbserver" {
   network_interface_ids = [azurerm_network_interface.nic_geewa_dbserver.id]
   vm_size               = var.vmsize_geewa_dbserver
   depends_on            = [azurerm_network_interface.nic_geewa_dbserver]
+  tags = var.tags
 
   storage_image_reference {
     publisher = var.imagepublisher_db
@@ -155,6 +178,7 @@ resource "azurerm_managed_disk" "datadisk_geewa_dbserver" {
     storage_account_type    = var.datadisk_type_dbserver
     create_option           = "Empty"
     disk_size_gb            = var.datadisksize_geewa_dbserver
+    tags = var.tags
 }
 
 resource "azurerm_virtual_machine_data_disk_attachment" "datadisk_attach" {
@@ -205,6 +229,7 @@ resource "azurerm_network_security_group" "nsg_geewa_appserver_a" {
   location            = var.location_a
   resource_group_name = var.rg_geewa_name_a
   depends_on            = [azurerm_network_interface.nic_geewa_appserver_a]
+  tags = var.tags
   security_rule {
     name                       = "PortAllowonLAN"
     priority                   = 100
@@ -241,6 +266,7 @@ resource "azurerm_network_security_group" "nsg_geewa_appserver_b" {
   location            = var.location_b
   resource_group_name = var.rg_geewa_name_b
   depends_on            = [azurerm_network_interface.nic_geewa_appserver_b]
+  tags = var.tags
   security_rule {
     name                       = "PortAllowonLAN"
     priority                   = 100
@@ -277,6 +303,7 @@ resource "azurerm_network_security_group" "nsg_geewa_db" {
   location            = var.location_a
   resource_group_name = var.rg_geewa_name_a
   depends_on            = [azurerm_network_interface.nic_geewa_dbserver]
+  tags = var.tags
   security_rule {
     name                       = "PortAllowonLAN"
     priority                   = 100
