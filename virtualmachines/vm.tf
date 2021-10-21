@@ -147,7 +147,7 @@ resource "azurerm_virtual_machine" "vm_geewa_dbserver" {
   }
 }
 
-# add a data disk - we were going to iterate through a collection, but this is easier for now
+# add a data disk - we were going to iterate through a collection
 resource "azurerm_managed_disk" "datadisk_geewa_dbserver" {
     name                    = var.datadisk_geewa_dbserver 
     location                = var.location_a
