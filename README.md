@@ -80,25 +80,41 @@ Step #03 Terraform
 
 Initate the Terraform and there are workspaces are defined to create multiple environments like DEV, TEST, UAT, and PROD, below are the commands which are required to deploy the terraform
 
+
 terraform init 
-Terraform workspace new geewa-dev
+
+terraform workspace new geewa-dev
+
 terraform plan
+
 terraform apply
+
 
 The infrasturcture will take time for the deployement after that you can check the IIS Servers by browsing the public IPs of the Application Servers and also use the Azure Bastion to access the VMs.
 
 Below is the List of Resources which will be deployed:
 
 Azure Virtual Machine (Windows Server 2019)
+
 Azure Virtual Machine (Windows Server 2019)
+
 Azure SQL Virtual Machine (Windows Server 2019 with SQL Server Standard 2019)
+
 Azure Bastion 
+
 Azure DDOS Protection 2
+
 Azure Network Interface Card  3
+
 Azure Network Security Group  3
+
 Azure Managed Disk 4
+
 Azure Public IP 3
+
 Azure Virtaul Network 2
+
 Azure Virtual Network Peering
+
 
 
